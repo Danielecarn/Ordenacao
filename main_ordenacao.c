@@ -1,7 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include "bubble_sort.h"
-int main(){
+
+void troca(int *v, int *prox){ 
+    int aux = *v; 
+    *v = *prox; 
+    *prox = aux; 
+} 
+void bubble_sort(int *vetor, int tamanho){ 
+    if (tamanho < 1){
+        return; 
+    }
+    for (int i=0; i<tamanho-1; i++) 
+        if (vetor[i] > vetor[i+1]) 
+            troca(&vetor[i], &vetor[i+1]);  
+    bubble_sort(vetor, tamanho-1); 
+} 
+
+int main(){ 
+   
     FILE *file;
     file = fopen("teste.txt","r");
 
@@ -9,7 +25,8 @@ int main(){
     char c;
     int qtd_linhas=0;
     FILE *arq1,*arq2;
-    
+
+    //Preenchendo arquivos de letras e números
     while(!feof(file)){
         fscanf(file,"%c\t%i\n", &c,&i);
         
@@ -23,9 +40,9 @@ int main(){
     } 
     printf("Linhas = %d\n", qtd_linhas);
     
-    int *numeros;
+    //Preenchendo vetor de números
+    int numeros[qtd_linhas]; 
     int j;
-    numeros=(int*)malloc(qtd_linhas*sizeof(int));
     FILE *ler = fopen("numeros.txt","r");
 
     for(int a=0; a<=qtd_linhas; a++){
@@ -33,37 +50,31 @@ int main(){
         numeros[a] = j;
     }
 
-    printf("%d ",numeros[i]);
-    for(i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]);
-
-
+    printf("Numeros Embaralhados:\n");
+    for(i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]); 
+   
     /*
-    int letras[qtd_linhas];
-    int numeros[qtd_linhas];
-    
-    for(int i=0; i<=qtd_linhas; i++){
-        letras[i] = *arq1;
-        numeros[i] = *arq2;
-    }
-    
-    for(int j=0; j<= qtd_linhas; j++){
-        printf("%d", numeros[j]);
-        printf("\n");
-    }
-    for(int j=0; j<= qtd_linhas; j++){
-        printf("%c", letras[j]);
-        printf("\n");
-    }
-        int vetor[12]={2,5,35,6,3,2,1,36,6,0,4,7};
-    int *p = vetor;
-    int tamanho=11;
+    int numeros[]={2,5,35,20,6,1,10,3,0,7};
+    int qtd_linhas = 10;  
+    printf("\nNumeros embaralhados:\n");
+    for(int i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]);
     */
 
-    
+    bubble_sort(numeros, qtd_linhas);
+    printf("\nNumeros na ordem crescente:\n");
+    for(int i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]);
+  
+
+    //Preenchendo vetor de letras
+
+    /**/
 
     fclose(file);
     fclose(arq1);
     fclose(arq2);
-    fclose(ler);
+    fclose(ler); 
+
+   
+    
     return 0;
 }

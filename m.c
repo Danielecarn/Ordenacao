@@ -39,4 +39,26 @@ int main(){
         letras[b] = l;
     }
     printf("Letras:\n");
-    for(i=0;i<qtd_linhas;i++)printf("%c",letras[i]);
+    for(i=0;i<qtd_linhas;i++)printf("%c",letras[i]); */
+
+        /*
+    int letras[qtd_linhas];
+    int numeros[qtd_linhas];
+    
+    for(int i=0; i<=qtd_linhas; i++){
+        letras[i] = *arq1;
+        numeros[i] = *arq2;
+    }
+    
+    for(int j=0; j<= qtd_linhas; j++){
+        printf("%d", numeros[j]);
+        printf("\n");
+    }
+    for(int j=0; j<= qtd_linhas; j++){
+        printf("%c", letras[j]);
+        printf("\n");
+    }
+        
+    int *p = vetor;
+    int tamanho=11;
+     */

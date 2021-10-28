@@ -62,3 +62,11 @@ int main(){
     int *p = vetor;
     int tamanho=11;
      */
+
+
+    /*TESTE COM ARRAY
+    int numeros[]={2,5,35,20,6,1,10,3,0,7};
+    int qtd_linhas = 10;  
+    printf("\nNumeros embaralhados:\n");
+    for(int i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]);
+    */

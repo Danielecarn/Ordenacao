@@ -18,7 +18,7 @@ void bubble_sort(int *vetor, int tamanho){
 
 int main(){ 
    
-    FILE *file;
+    FILE *file, *copiar;
     file = fopen("teste.txt","r");
 
     int i;
@@ -27,19 +27,19 @@ int main(){
     FILE *arq1,*arq2;
 
     //Preenchendo arquivos de letras e números
+    arq1 = fopen("letras.txt", "w+");
+    arq2 = fopen("numeros.txt","w+");
     while(!feof(file)){
         fscanf(file,"%c\t%i\n", &c,&i);
-        
-        arq1 = fopen("letras.txt", "a");
+    
         fprintf(arq1,"%c\n", c);
-
-        arq2 = fopen("numeros.txt","a");
         fprintf(arq2,"%i\n", i);
         
         qtd_linhas++;
     } 
     printf("Linhas = %d\n", qtd_linhas);
-    
+    fclose(arq1);
+    fclose(arq2);
     //Preenchendo vetor de números
     int numeros[qtd_linhas]; 
     int j;
@@ -53,28 +53,20 @@ int main(){
     printf("Numeros Embaralhados:\n");
     for(i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]); 
    
-    /*
-    int numeros[]={2,5,35,20,6,1,10,3,0,7};
-    int qtd_linhas = 10;  
-    printf("\nNumeros embaralhados:\n");
-    for(int i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]);
-    */
-
+    copiar = fopen("ordemcrescente.txt", "w+");
     bubble_sort(numeros, qtd_linhas);
     printf("\nNumeros na ordem crescente:\n");
     for(int i=0;i<qtd_linhas;i++)printf("%d ",numeros[i]);
-  
+    for(int i=0;i<qtd_linhas;i++){
+        fprintf(copiar,"%d\n",numeros[i]);
+    }
 
     //Preenchendo vetor de letras
 
-    /**/
-
     fclose(file);
-    fclose(arq1);
-    fclose(arq2);
-    fclose(ler); 
 
-   
+    fclose(ler); 
+    fclose(copiar);
     
     return 0;
 }

@@ -79,7 +79,9 @@ int main(){
             }
             printf("\nArquivos ordenados com sucesso!\n\n");
             fclose(acessa_letras);
+            return 0;
         }
+
     }
     return 0;
 }

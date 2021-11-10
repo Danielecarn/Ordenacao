@@ -17,9 +17,9 @@ int main(){
         }
         if(opcao_usuario == 1){
             FILE *arquivo_geral, *arq_letras, *arq_numeros;
-            arquivo_geral = malloc(1);
-            arq_letras = malloc(1);
-            arq_numeros = malloc(1); 
+            arquivo_geral = (FILE *) malloc(qtd_linhas * sizeof(FILE));
+            arq_letras = (FILE *) malloc(qtd_linhas * sizeof(FILE));
+            arq_numeros = (FILE *) malloc(qtd_linhas * sizeof(FILE));
 
             arquivo_geral = fopen("teste.txt","r");
             arq_letras = fopen("letras.txt", "w+");
@@ -48,7 +48,7 @@ int main(){
             char *vetor_caractere;
             vetor_caractere = (char *) malloc(qtd_linhas * sizeof(char));
             //Preenchendo vetor de números 
-            FILE  *acessa_numeros;
+            FILE  *acessa_numeros = (FILE *) malloc(qtd_linhas * sizeof(FILE));;
 
             acessa_numeros = fopen("numeros.txt","r+");
 
@@ -69,7 +69,7 @@ int main(){
             fclose(acessa_numeros);
 
             //Preenchendo vetor de letras
-            FILE *acessa_letras = malloc(1);
+            FILE *acessa_letras = (FILE *) malloc(qtd_linhas * sizeof(FILE));
 
             acessa_letras = fopen("letras.txt","r");
             
@@ -77,7 +77,7 @@ int main(){
             
             for(int posicao=0; posicao<qtd_linhas; posicao++){
                 fgets(vetor_caractere,qtd_linhas,acessa_letras);                
-                *(vetor_letras + posicao)= (int)*(vetor_caractere + 0);
+                *(vetor_letras + posicao)= (int)*(vetor_caractere);
             }
 
             acessa_letras = fopen("letras.txt", "w+");
@@ -90,11 +90,12 @@ int main(){
             printf("\nArquivos ordenados com sucesso!\n\n");
             
             fclose(acessa_letras);
+
             free(vetor_numeros);
             free(vetor_caractere);
-            return 0;
+            return EXIT_SUCCESS;
         }
 
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
